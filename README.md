@@ -22,6 +22,9 @@ Make sure you have a vector-capable Astra database (get one for free at [astra.d
 - Create an [OpenAI account](https://platform.openai.com/signup) or [sign in](https://platform.openai.com/login).
 - Navigate to the [API key page](https://platform.openai.com/account/api-keys) and create a new **Secret Key**, optionally naming the key.
 
+## Sign up for Streamlit
+Follow the steps outlined [here](https://docs.streamlit.io/streamlit-community-cloud/get-started/quickstart).
+
 ## 2️⃣ First try the concepts in a Colab Notebook
 To kick this workshop off, we'll first try the concepts in a [Colab Notebook](https://colab.research.google.com/drive/1_n-QZyuP898JNaX7RDnCmw9lkibgEuP-#scrollTo=RUbC-NIgkSR9).
 
@@ -90,6 +93,8 @@ Now clone the repository by:
 ```bash
 git clone https://github.com/michelderu/build-your-own-rag-agent
 ```
+
+Now just follow the steps outlined in this tutorial.
 
 ## 4️⃣ Add a Chatbot interface to the app
 In this step we'll start preparing the app to allow for chatbot interaction with a user. We'll use the following Streamlit components:
@@ -193,6 +198,13 @@ answer = response.content
 ```
 Check out the complete code in [app_4.py](./app_4.py).
 
+Before we continue, we have to provide the `OPENAI_API_KEY` in `./streamlit/secrets.toml`. There is an example provided in `secrets.toml.example`:
+
+```toml
+# OpenAI secrets
+OPENAI_API_KEY = "<YOUR-API-KEY>"
+```
+
 Now run the app while first installing required dependencies:
 ```bash
 pip install openai astrapy langchain
@@ -247,6 +259,14 @@ inputs = RunnableMap({
 ```
 
 Check out the complete code in [app_5.py](./app_5.py).
+
+Before we continue, we have to provide the `ASTRA_API_ENDPOINT` and `ASTRA_TOKEN` in `./streamlit/secrets.toml`. There is an example provided in `secrets.toml.example`:
+
+```toml
+# Astra DB secrets
+ASTRA_API_ENDPOINT = "<YOUR-API-ENDPOINT>"
+ASTRA_TOKEN = "<YOUR-TOKEN>"
+```
 
 And run the app:
 ```bash
