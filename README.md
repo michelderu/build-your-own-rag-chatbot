@@ -40,7 +40,7 @@ You'll learn:
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1_n-QZyuP898JNaX7RDnCmw9lkibgEuP-#scrollTo=RUbC-NIgkSR9)
 
-## 3️⃣ Getting started with Streamlit to build an app
+### 3️⃣ Getting started with Streamlit to build an app
 In this workshop we'll use Streamlit which is an amazingly simple to use framework to create front-end web applications.
 
 To get started, let's create a *hello world* application as follows:
@@ -143,7 +143,9 @@ To do this we'll take the next steps:
 
 This approach works because the `session_state` is stateful across Streamlit runs.
 
-Check out the complete code in [app_3.py](./app_3.py). As you'll see we use a dictionary to store both the `role` (which can be either the Human or the AI) and the `question` or `answer`. Keeping track of the role is important as it will draw the right picture in the browser.
+Check out the complete code in [app_3.py](./app_3.py). 
+
+As you'll see we use a dictionary to store both the `role` (which can be either the Human or the AI) and the `question` or `answer`. Keeping track of the role is important as it will draw the right picture in the browser.
 
 Run it with:
 ```bash
