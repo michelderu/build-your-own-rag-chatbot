@@ -19,33 +19,32 @@ class StreamHandler(BaseCallbackHandler):
         self.text += token
         self.container.markdown(self.text + "▌")
 
+# Cache prompt for future runs
+@st.cache_data()
+def load_prompt():
+    template = """You're a helpful AI assistent tasked to answer the user's questions.
+You're friendly and you answer extensively with multiple sentences. You prefer to use bulletpoints to summarize.
+
+CONTEXT:
+{context}
+
+QUESTION:
+{question}
+
+YOUR ANSWER:"""
+    return ChatPromptTemplate.from_messages([("system", template)])
+prompt = load_prompt()
+
 # Cache OpenAI Chat Model for future runs
 @st.cache_resource()
 def load_chat_model():
     return ChatOpenAI(
         temperature=0.3,
-        model='gpt-4-1106-preview',
+        model='gpt-3.5-turbo',
         streaming=True,
         verbose=True
     )
 chat_model = load_chat_model()
-
-# Cache prompt
-@st.cache_data()
-def load_prompt():
-    template = """You're a helpful AI assistent tasked to answer the user's questions.
-You're friendly and you answer extensively with multiple sentences. You prefer to use bulletpoints to summarize.
-If you don't know the answer, just say 'I do not know the answer'.
-
-Use the following context to answer the question:
-{context}
-
-Question:
-{question}
-
-Answer in the user's language:"""
-    return ChatPromptTemplate.from_messages([("system", template)])
-prompt = load_prompt()
 
 # Cache the Astra DB Vector Store for future runs
 @st.cache_resource(show_spinner='Connecting to Astra')
@@ -70,7 +69,7 @@ if 'messages' not in st.session_state:
     st.session_state.messages = []
 
 # Draw a title and some markdown
-st.title("Your personal Chat Agent")
+st.title("Your personal Effectiviy Booster")
 st.markdown("""Generative AI is considered to bring the next Industrial Revolution.  
 Why? Studies show a **37% efficiency boost** in day to day work activities!""")
 

@@ -5,36 +5,36 @@ from langchain.vectorstores import AstraDB
 from langchain.schema.runnable import RunnableMap
 from langchain.prompts import ChatPromptTemplate
 
-# Cache OpenAI Chat Model for future runs
-@st.cache_resource()
-def load_chat_model():
-    return ChatOpenAI(
-        temperature=0.3,
-        model='gpt-4-1106-preview',
-        streaming=True,
-        verbose=True
-    )
-chat_model = load_chat_model()
-
-# Cache prompt
+# Cache prompt for future runs
 @st.cache_data()
 def load_prompt():
     template = """You're a helpful AI assistent tasked to answer the user's questions.
 You're friendly and you answer extensively with multiple sentences. You prefer to use bulletpoints to summarize.
 
-Question:
+QUESTION:
 {question}
 
-Answer in the user's language:"""
+YOUR ANSWER:"""
     return ChatPromptTemplate.from_messages([("system", template)])
 prompt = load_prompt()
+
+# Cache OpenAI Chat Model for future runs
+@st.cache_resource()
+def load_chat_model():
+    return ChatOpenAI(
+        temperature=0.3,
+        model='gpt-3.5-turbo',
+        streaming=True,
+        verbose=True
+    )
+chat_model = load_chat_model()
 
 # Start with empty messages, stored in session state
 if 'messages' not in st.session_state:
     st.session_state.messages = []
 
 # Draw a title and some markdown
-st.title("Your personal Chat Agent")
+st.title("Your personal Effectiviy Booster")
 st.markdown("""Generative AI is considered to bring the next Industrial Revolution.  
 Why? Studies show a **37% efficiency boost** in day to day work activities!""")
 
@@ -66,4 +66,3 @@ if question := st.chat_input("What's up?"):
     # Draw the bot's answer
     with st.chat_message('assistant'):
         st.markdown(answer)
-

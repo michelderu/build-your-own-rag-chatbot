@@ -3,3 +3,4 @@ streamlit
 openai
 astrapy
 langchain
+pypdf
