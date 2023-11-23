@@ -5,9 +5,6 @@ from langchain.chat_models import ChatOpenAI
 from langchain.vectorstores import AstraDB
 from langchain.schema.runnable import RunnableMap
 from langchain.prompts import ChatPromptTemplate
-
-os.environ["OPENAI_API_KEY"] = st.secrets['OPENAI_API_KEY']
-
 # Cache prompt for future runs
 @st.cache_data()
 def load_prompt():
@@ -58,7 +55,7 @@ if 'messages' not in st.session_state:
     st.session_state.messages = []
 
 # Draw a title and some markdown
-st.title("Your personal Effectiviy Booster")
+st.title("Your personal Efficiency Booster")
 st.markdown("""Generative AI is considered to bring the next Industrial Revolution.  
 Why? Studies show a **37% efficiency boost** in day to day work activities!""")
 

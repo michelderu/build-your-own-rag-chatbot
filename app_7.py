@@ -33,17 +33,18 @@ def vectorize_text(uploaded_file, vector_store):
         with open(temp_filepath, 'wb') as f:
             f.write(file.getvalue())
 
+        # Load the PDF
+        docs = []
+        loader = PyPDFLoader(temp_filepath)
+        docs.extend(loader.load())
+
         # Create the text splitter
         text_splitter = RecursiveCharacterTextSplitter(
             chunk_size = 1500,
             chunk_overlap  = 100
         )
 
-        # Load and vectorize the PDF
-        docs = []
-        loader = PyPDFLoader(temp_filepath)
-        docs.extend(loader.load())
-
+        # Vectorize the PDF and load it into the Astra DB Vector Store
         pages = text_splitter.split_documents(docs)
         vector_store.add_documents(pages)  
         st.info(f"{len(pages)} pages loaded.")
@@ -103,7 +104,7 @@ if 'messages' not in st.session_state:
     st.session_state.messages = []
 
 # Draw a title and some markdown
-st.title("Your personal Effectiviy Booster")
+st.title("Your personal Efficiency Booster")
 st.markdown("""Generative AI is considered to bring the next Industrial Revolution.  
 Why? Studies show a **37% efficiency boost** in day to day work activities!""")
 

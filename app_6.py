@@ -7,8 +7,6 @@ from langchain.schema.runnable import RunnableMap
 from langchain.prompts import ChatPromptTemplate
 from langchain.callbacks.base import BaseCallbackHandler
 
-os.environ["OPENAI_API_KEY"] = st.secrets['OPENAI_API_KEY']
-
 # Streaming call back handler for responses
 class StreamHandler(BaseCallbackHandler):
     def __init__(self, container, initial_text=""):
@@ -69,7 +67,7 @@ if 'messages' not in st.session_state:
     st.session_state.messages = []
 
 # Draw a title and some markdown
-st.title("Your personal Effectiviy Booster")
+st.title("Your personal Efficiency Booster")
 st.markdown("""Generative AI is considered to bring the next Industrial Revolution.  
 Why? Studies show a **37% efficiency boost** in day to day work activities!""")
 
