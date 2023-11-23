@@ -1,5 +1,7 @@
 # Build your own RAG Chatbot
-Welcome to this workshop to build and deploy your own Chat Agent using Retrieval Augmented Generation with Astra DB and the OpenAI Chat Model.
+Welcome to this workshop to build and deploy your own Chatbot using Retrieval Augmented Generation with Astra DB and the OpenAI Chat Model.
+
+![codespace](./assets/chatbot.png)
 
 What you'll learn:
 - 🚀 How to use Astra DB Vector Store for Semantic Similarity search
