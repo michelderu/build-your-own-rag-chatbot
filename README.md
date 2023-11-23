@@ -52,7 +52,7 @@ To make life easier, we'll use the awesome Github Codespace functionality. Githu
 1. Open the [build-you-own-rag-agent](https://github.com/michelderu/build-you-own-rag-agent) repository
 2. Click on `Use this template`->`Ceate new repository` as follows:
 
-![codespace](./assets/open-in-codespace.png)
+![codespace](./assets/create-new-repository.png)
 
 3. Now select your github account and name the new repository. Ideally also set the description. Click `Create new repository`
 
