@@ -47,15 +47,23 @@ You'll learn:
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1_n-QZyuP898JNaX7RDnCmw9lkibgEuP-#scrollTo=RUbC-NIgkSR9)
 
 ## 3️⃣ Open this tutorial on Github Codespaces
-To make life easier, we'll use the awezome Github Codespace functionality. Github offers you a completely integrated developer experience and resources to get started quickly. How?
+To make life easier, we'll use the awesome Github Codespace functionality. Github offers you a completely integrated developer experience and resources to get started quickly. How?
 
-1. Open the [build-you-own-rag-agent](https://github.com/michelderu/build-you-own-rag-agent) repository/
-2. Click on `Code`->`Codespaces`->`Create codespace on main` as follows:
+1. Open the [build-you-own-rag-agent](https://github.com/michelderu/build-you-own-rag-agent) repository
+2. Click on `Use this template`->`Ceate new repository` as follows:
 
-![codespaces](./assets/open-in-codespaces.png)
+![codespace](./assets/open-in-codespace.png)
+
+3. Now select your github account and name the new repository. Ideally also set the description. Click `Create new repository`
+
+![codespace](./assets/repository-name.png)
+
+4. Cool! You just created a copy in your own Gihub account! Now let's get started with coding. Click `Create codespace on main` as follows:
+
+![codespace](./assets/create-codespace.png)
 
 And you're ready to rock and roll! 🥳  
-As codespaces creates your dev environment based on `Python 3.11`, it will automatically install the Python dependecies from `requirements.txt`. So, no need to `pip install` anything here. It will also set up prt forwarding so you can access subsequent Streamlit apps from anywhere.  
+As Codespaces creates your dev environment based on `Python 3.11`, it will automatically install the Python dependecies from `requirements.txt`. So, no need to `pip install` anything here. It will also set up prt forwarding so you can access subsequent Streamlit apps from anywhere.  
 When the codespace start up, it will run a Streamlit Hello World app for you which shows some of the awesome capabilities of this UI framework. When you're done playing, just click `ctrl-c` in the `terminal` to stop running it.
 
 ## 4️⃣ Getting started with Streamlit to build an app
@@ -377,22 +385,41 @@ streamlit run app_7.py
 Now upload a PDF document (the more the merrier) that is relevant to you and start asking questions about it. You'll see that the answers will be relevant, meaningful and contextual! 🥳 See the magic happen!
 
 ## 1️⃣1️⃣ Let's deploy this cool stuff to Streamlit cloud!
-In order to do this, you first have to save the code to your personal Github account. Both in Gitpod and your local machine, run the following:
+In this step we'll deploy your awesome app to the internet so everyone can enjoy your cool work and be amazed!
 
-```python
-git remote rename origin upstream
-git remote add origin <URL_TO_YOUR_NEW_GITHUB_REPO>
-git push origin master
-```
+### Set up your Streamlit account
+If you have not do so before, please set up your account on Streamlit. When you already have an account skip to the next step and deploy the app.
 
-This will create a new repository in your personal Github account.
+1. Head over to [Streamlit.io](https://streamlit.io) and clikc `Sign up`. Then select `Continue with Github`:
 
-1. Now head over to [Streamlit.io](https://streamlit.io) and create an account linking back to your Github account.
-2. Click 'New App' and select your repository.
-3. Change the name of the Main File Path to `app_7.py`.
-4. Select a nice App URL.
-5. Click on Advanced, select Python 3.11 and copy-paste the contents from your `secrets.toml`.
+![Streamlit](./assets/streamlit-0.png)
 
-Wait for a bit and your app is online for everyone to use!
+2. Log in using your Github credentials:
 
-⛔️ Be aware that this app is public and uses your OpenAI account which will incur cost. You'll want to shield it off by clicking `Settings->Sharing` in the main screen and define the email addresses that are allowed access.
+![Streamlit](./assets/streamlit-1.png)
+
+3. Now authorize Streamlit:
+
+![Streamlit](./assets/streamlit-2.png)
+
+4. And set up your account:
+
+![Streamlit](./assets/streamlit-3.png)
+
+### Deploy your app
+
+On the main screen, when logged in, click `New app`.
+
+1. When this is your first deployment, provide additional permissions:
+
+![Streamlit](./assets/streamlit-4.png)
+
+2. Now define your application settings. Use YOUR repository name, and name the Main file path as `app_7.py`. Pick a cool App URL as you'll app will be deployed to that:
+
+![Streamlit](./assets/streamlit-5.png)
+
+3. Click on Advanced, select Python 3.11 and copy-paste the contents from your `secrets.toml`.
+
+Click Deploy! Wait for a bit and your app is online for everyone to use!
+
+⛔️ Be aware that this app is public and uses your OpenAI account which will incur cost. You'll want to shield it off by clicking `Settings->Sharing` in the main screen and define the email addresses that are allowed access. In order to enable this, link your Google account.
