@@ -52,15 +52,15 @@ To make life easier, we'll use the awesome Github Codespace functionality. Githu
 1. Open the [build-you-own-rag-agent](https://github.com/michelderu/build-you-own-rag-agent) repository
 2. Click on `Use this template`->`Ceate new repository` as follows:
 
-![codespace](./assets/create-new-repository.png)
+    ![codespace](./assets/create-new-repository.png)
 
 3. Now select your github account and name the new repository. Ideally also set the description. Click `Create new repository`
 
-![codespace](./assets/repository-name.png)
+    ![codespace](./assets/repository-name.png)
 
 4. Cool! You just created a copy in your own Gihub account! Now let's get started with coding. Click `Create codespace on main` as follows:
 
-![codespace](./assets/create-codespace.png)
+    ![codespace](./assets/create-codespace.png)
 
 And you're ready to rock and roll! 🥳  
 As Codespaces creates your dev environment based on `Python 3.11`, it will automatically install the Python dependecies from `requirements.txt`. So, no need to `pip install` anything here. It will also set up prt forwarding so you can access subsequent Streamlit apps from anywhere.  
@@ -392,19 +392,19 @@ If you have not do so before, please set up your account on Streamlit. When you 
 
 1. Head over to [Streamlit.io](https://streamlit.io) and clikc `Sign up`. Then select `Continue with Github`:
 
-![Streamlit](./assets/streamlit-0.png)
+    ![Streamlit](./assets/streamlit-0.png)
 
 2. Log in using your Github credentials:
 
-![Streamlit](./assets/streamlit-1.png)
+    ![Streamlit](./assets/streamlit-1.png)
 
 3. Now authorize Streamlit:
 
-![Streamlit](./assets/streamlit-2.png)
+    ![Streamlit](./assets/streamlit-2.png)
 
 4. And set up your account:
 
-![Streamlit](./assets/streamlit-3.png)
+    ![Streamlit](./assets/streamlit-3.png)
 
 ### Deploy your app
 
@@ -412,11 +412,11 @@ On the main screen, when logged in, click `New app`.
 
 1. When this is your first deployment, provide additional permissions:
 
-![Streamlit](./assets/streamlit-4.png)
+    ![Streamlit](./assets/streamlit-4.png)
 
 2. Now define your application settings. Use YOUR repository name, and name the Main file path as `app_7.py`. Pick a cool App URL as you'll app will be deployed to that:
 
-![Streamlit](./assets/streamlit-5.png)
+    ![Streamlit](./assets/streamlit-5.png)
 
 3. Click on Advanced, select Python 3.11 and copy-paste the contents from your `secrets.toml`.
 
