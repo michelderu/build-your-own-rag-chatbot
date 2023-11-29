@@ -51,7 +51,7 @@ You'll learn:
 ## 3️⃣ Open this tutorial on Github Codespaces
 To make life easier, we'll use the awesome Github Codespace functionality. Github offers you a completely integrated developer experience and resources to get started quickly. How?
 
-1. Open the [build-you-own-rag-agent](https://github.com/michelderu/build-you-own-rag-agent) repository
+1. Open the [build-you-own-rag-agent](https://github.com/michelderu/build-your-own-rag-agent) repository
 2. Click on `Use this template`->`Ceate new repository` as follows:
 
     ![codespace](./assets/create-new-repository.png)
