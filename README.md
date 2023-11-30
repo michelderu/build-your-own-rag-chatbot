@@ -56,7 +56,7 @@ To make life easier, we'll use the awesome Github Codespace functionality. Githu
 
     ![codespace](./assets/create-new-repository.png)
 
-3. Now select your github account and name the new repository. Ideally also set the description. Click `Create new repository`
+3. Now select your github account and name the new repository. Ideally also set the description. Click `Create repository`
 
     ![codespace](./assets/repository-name.png)
 
