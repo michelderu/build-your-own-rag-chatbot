@@ -1,13 +1,16 @@
 # Build your own RAG Chatbot
 Welcome to this workshop to build and deploy your own Chatbot using Retrieval Augmented Generation with Astra DB and the OpenAI Chat Model.
 
+It leverages [DataStax RAGStack](https://docs.datastax.com/en/ragstack/docs/index.html), which is a curated stack of the best open-source software for easing implementation of the RAG pattern in production-ready applications that use Astra Vector DB or Apache Cassandra as a vector store.
+
 ![codespace](./assets/chatbot.png)
 
 What you'll learn:
-- 🚀 How to use Astra DB Vector Store for Semantic Similarity search
-- 🤖 How to use OpenAI's Large Language Models for Q&A style chatbots
-- 🦜🔗 How to use LangChain for linking OpenAI and Astra DB
-- 👑 How to use Streamlit to easily deploy your awesome app to the internet for everyone to see!
+- 🤩 How to leverage [DataStax RAGStack](https://docs.datastax.com/en/ragstack/docs/index.html) for production-ready use of the following components:
+    - 🚀 The [Astra DB Vector Store](https://db.new) for Semantic Similarity search
+    - 🦜🔗 [LangChain](https://www.langchain.com) for linking OpenAI and Astra DB
+- 🤖 How to use [OpenAI's Large Language Models](https://platform.openai.com/docs/models) for Q&A style chatbots
+- 👑 How to use [Streamlit](https://streamlit.io) to easily deploy your awesome app to the internet for everyone to see!
 
 ## 1️⃣ Prerequisites
 This workshop assumes you have access to:
@@ -425,3 +428,26 @@ On the main screen, when logged in, click `New app`.
 Click Deploy! Wait for a bit and your app is online for everyone to use!
 
 ⛔️ Be aware that this app is public and uses your OpenAI account which will incur cost. You'll want to shield it off by clicking `Settings->Sharing` in the main screen and define the email addresses that are allowed access. In order to enable this, link your Google account.
+
+# Python environments
+In case you want to run all of the above locally, it's useful to create a *Virtual Environment*. Use the below to set it up:
+```
+python3 -m venv myenv
+```
+Then activate it as follows:
+```
+source myenv/bin/activate   # on Linux/Mac
+myenv\Scripts\activate.bat  # on Windows
+```
+Now you can start installing packages:
+```
+pip3 install -r requirements.txt
+```
+In order to check which packages have been installed:
+```
+pip3 freeze
+```
+Which you can save to requirements.txt if you want:
+```
+pip3 freeze > requirements.txt
+```
