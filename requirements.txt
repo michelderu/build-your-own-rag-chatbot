@@ -4,3 +4,4 @@ ragstack-ai
 openai
 tiktoken
 pypdf
+langchain_openai
