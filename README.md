@@ -12,6 +12,10 @@ What you'll learn:
 - 🤖 How to use [OpenAI's Large Language Models](https://platform.openai.com/docs/models) for Q&A style chatbots
 - 👑 How to use [Streamlit](https://streamlit.io) to easily deploy your awesome app to the internet for everyone to see!
 
+- Slides of the presentation can be found [HERE](assets/meetups-slides.pdf)
+
+
+
 ## 1️⃣ Prerequisites
 This workshop assumes you have access to:
 1. [A Github account](https://github.com)
