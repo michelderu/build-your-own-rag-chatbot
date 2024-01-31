@@ -12,6 +12,10 @@ What you'll learn:
 - 🤖 How to use [OpenAI's Large Language Models](https://platform.openai.com/docs/models) for Q&A style chatbots
 - 👑 How to use [Streamlit](https://streamlit.io) to easily deploy your awesome app to the internet for everyone to see!
 
+- Slides of the presentation can be found [HERE](assets/meetups-slides.pdf)
+
+
+
 ## 1️⃣ Prerequisites
 This workshop assumes you have access to:
 1. [A Github account](https://github.com)
@@ -29,15 +33,21 @@ Make sure you have a vector-capable Astra database (get one for free at [astra.d
 - You will be asked to provide the **API Endpoint** which can be found in the right pane underneath *Database details*.
 - Ensure you have an **Application Token** for your database which can be created in the right pane underneath *Database details*.
 
+![codespace](./assets/astra.png)
+
 ### Sign up for OpenAI
 - Create an [OpenAI account](https://platform.openai.com/signup) or [sign in](https://platform.openai.com/login).
 - Navigate to the [API key page](https://platform.openai.com/account/api-keys) and create a new **Secret Key**, optionally naming the key.
 
+![codespace](./assets/openai-key.png)
+
 ### Sign up for Streamlit
 Follow the steps outlined [here](https://docs.streamlit.io/streamlit-community-cloud/get-started/quickstart).
 
+![codespace](./assets/streamlit.png)
+
 ## 2️⃣ First try the concepts in a Colab Notebook
-To kick this workshop off, we'll first try the concepts in a [Colab Notebook](https://colab.research.google.com/drive/1_n-QZyuP898JNaX7RDnCmw9lkibgEuP-#scrollTo=RUbC-NIgkSR9).
+To kick this workshop off, we'll first try the concepts in a [Colab Notebook](https://colab.research.google.com/drive/1paBN91kHN20la9s21oLfDOsOwWZn4dlW?authuser=1#scrollTo=S_h_Ah_Bb_Qo).
 
 This notebook shows the steps to take to use the Astra DB Vector Store as a means to make LLM interactions meaningfull and without hallucinations. The approach taken here is Retrieval Augmented Generation.
 
@@ -50,6 +60,8 @@ You'll learn:
 5. How to use this context with the OpenAI Chat Model
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1_n-QZyuP898JNaX7RDnCmw9lkibgEuP-#scrollTo=RUbC-NIgkSR9)
+
+![codespace](./assets/collab.png)
 
 ## 3️⃣ Open this tutorial on Github Codespaces
 To make life easier, we'll use the awesome Github Codespace functionality. Github offers you a completely integrated developer experience and resources to get started quickly. How?
@@ -72,6 +84,11 @@ As Codespaces creates your dev environment based on `Python 3.11`, it will autom
 When the codespace start up, it will run a Streamlit Hello World app for you which shows some of the awesome capabilities of this UI framework. When you're done playing, just click `ctrl-c` in the `terminal` to stop running it.
 
 ## 4️⃣ Getting started with Streamlit to build an app
+
+Let us now build a real application we will use the following architecture
+
+![steps](./assets/steps.png)
+
 In this workshop we'll use Streamlit which is an amazingly simple to use framework to create front-end web applications.
 
 To get started, let's create a *hello world* application as follows:
@@ -101,8 +118,10 @@ This will start the application server and will bring you to the web page you ju
 Simple, isn't it? 🤩
 
 ## 5️⃣ Add a Chatbot interface to the app
+
 In this step we'll start preparing the app to allow for chatbot interaction with a user. We'll use the following Streamlit components:
-1. `st.chat_input` in order for a user to allow to enter a question
+1. 
+2. `st.chat_input` in order for a user to allow to enter a question
 2. `st.chat_message('human')` to draw the user's input
 3. `st.chat_message('assistant')` to draw the chatbot's response
 
@@ -138,6 +157,7 @@ Why???
 This is because Streamlit will redraw the whole screen again and again based on the latest input. As we're not remembering the questions, only the last on is show.
 
 ## 6️⃣ Remember the chatbot interaction
+
 In this step we'll make sure to keep track of the questions and answers so that with every redraw the history is shown.
 
 To do this we'll take the next steps:
@@ -159,6 +179,7 @@ streamlit run app_3.py
 Now add multiple questions and you'll see these are redraw to the screen every time Streamlit reruns. 👍
 
 ## 7️⃣ Now for the cool part! Let's integrate with the OpenAI Chat Model 🤖
+
 Here we'll link back to the work we did using the Colab Notebook and integrate the question with a call to the OpenAI Chat Model.
 
 Remember that Streamlit reruns the code everytime a user interacts? Because of this we'll make use of data and resource caching in Streamlit so that a connection is only set-up once. We'll use `@st.cache_data()` and `@st.cache_resource()` to define caching. `cache_data` is typically used for data structures. `cache_resource` is mostly used for resources like databases.
@@ -213,7 +234,7 @@ OPENAI_API_KEY = "<YOUR-API-KEY>"
 
 To get this application started locally you'll need to install several dependencies as follows (not needed in Codespaces):
 ```bash
-pip install openai tiktoken astrapy langchain
+pip install openai tiktoken astrapy langchain langchain_openai langchain-community
 ```
 
 Now run the app:
@@ -230,11 +251,16 @@ Let's start with the question:
 As you will see, you'll receive a very generic answer without the information that is available in the CNN data.
 
 ## 8️⃣ Combine with the Astra DB Vector Store for additional context
+
 Now things become really interesting! In this step we'll integrate the Astra DB Vector Store in order to provide context in real-time for the Chat Model. Steps taken to implement Retrieval Augmented Generation:
 1. User asks a question
 2. A semantic similarity search is run on the Astra DB Vector Store
 3. The retrieved context is provided to the Prompt for the Chat Model
 4. The Chat Model comes back with an answer, taking into account the retrieved context
+
+We will reuse the data we inserted thanks to the notebook.
+
+![data-explorer](./assets/data-explorer.png)
 
 In order to enable this, we first have to set up a connection to the Astra DB Vector Store:
 
@@ -290,6 +316,7 @@ Let's again ask the question:
 As you will see, now you'll receive a very contextual answer as the Vector Store provides relevant CNN data to the Chat Model.
 
 ## 9️⃣ Finally, let's make this a streaming app
+
 How cool would it be to see the answer appear on the screen as it is generated! Well, that's easy.
 
 First of all, we'll create a Streaming Call Back Handler that is called on every new token generation as follows:
@@ -330,7 +357,8 @@ streamlit run app_6.py
 Now you'll see that the response will be written in real-time to the browser window.
 
 ## 1️⃣0️⃣ Now let's make magic happen! 🦄
-The ultimate goal ofcourse is to add your own company's context to the agent. In order to do this, we'll add an upload box that allows you to upload PDF files which will then be used to provide a meaningfull and contextual response!
+
+The ultimate goal of course is to add your own company's context to the agent. In order to do this, we'll add an upload box that allows you to upload PDF files which will then be used to provide a meaningfull and contextual response!
 
 First we need an upload form which is simple to create with Streamlit:
 
@@ -388,6 +416,8 @@ streamlit run app_7.py
 ```
 
 Now upload a PDF document (the more the merrier) that is relevant to you and start asking questions about it. You'll see that the answers will be relevant, meaningful and contextual! 🥳 See the magic happen!
+
+![end-result](./assets/end-result.png)
 
 ## 1️⃣1️⃣ Let's deploy this cool stuff to Streamlit cloud!
 In this step we'll deploy your awesome app to the internet so everyone can enjoy your cool work and be amazed!
