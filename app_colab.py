@@ -1,5 +1,5 @@
 import streamlit as st
-import tempfile
+import tempfile, os
 from langchain_openai import OpenAIEmbeddings
 from langchain_openai import ChatOpenAI
 from langchain_community.vectorstores import AstraDB
@@ -20,31 +20,30 @@ class StreamHandler(BaseCallbackHandler):
         self.container.markdown(self.text + "▌")
 
 # Function for Vectorizing uploaded data into Astra DB
-def vectorize_text(uploaded_file, vector_store):
-    if uploaded_file is not None:
-        
-        # Write to temporary file
-        temp_dir = tempfile.TemporaryDirectory()
-        file = uploaded_file
-        temp_filepath = os.path.join(temp_dir.name, file.name)
-        with open(temp_filepath, 'wb') as f:
-            f.write(file.getvalue())
+def vectorize_text(uploaded_files, vector_store):
+    for uploaded_file in uploaded_files:
+        if uploaded_file is not None:
+            
+            # Write to temporary file
+            temp_dir = tempfile.TemporaryDirectory()
+            file = uploaded_file
+            print(f"""Processing: {file}""")
+            temp_filepath = os.path.join(temp_dir.name, file.name)
+            with open(temp_filepath, 'wb') as f:
+                f.write(file.getvalue())
 
-        # Load the PDF
-        docs = []
-        loader = PyPDFLoader(temp_filepath)
-        docs.extend(loader.load())
+            # Process TXT
+            if uploaded_file.name.endswith('txt'):
+                file = [uploaded_file.read().decode()]
 
-        # Create the text splitter
-        text_splitter = RecursiveCharacterTextSplitter(
-            chunk_size = 1500,
-            chunk_overlap  = 100
-        )
+                text_splitter = RecursiveCharacterTextSplitter(
+                    chunk_size = 1500,
+                    chunk_overlap  = 100
+                )
 
-        # Vectorize the PDF and load it into the Astra DB Vector Store
-        pages = text_splitter.split_documents(docs)
-        vector_store.add_documents(pages)  
-        st.info(f"{len(pages)} pages loaded.")
+                texts = text_splitter.create_documents(file, [{'source': uploaded_file.name}])
+                vector_store.add_documents(texts)
+                st.info(f"Loaded {len(texts)} chunks")
 
 # Cache prompt for future runs
 @st.cache_data()
@@ -113,7 +112,7 @@ for message in st.session_state.messages:
 
 # Draw the chat input box
 if not openai_api_key.startswith('sk-') or not astra_db_endpoint.startswith('https') or not astra_db_secret.startswith('AstraCS'):
-    st.warning('Please enter your Astra DB Endpoint and secrets!', icon='⚠')
+    st.warning('Please enter your Astra DB Endpoint, Astra DB Secret and Open AI API Key!', icon='⚠')
 
 else:
     prompt = load_prompt()
@@ -124,7 +123,7 @@ else:
     # Include the upload form for new data to be Vectorized
     with st.sidebar:
         st.divider()
-        uploaded_file = st.file_uploader('Upload a document for additional context', type=['pdf'])
+        uploaded_file = st.file_uploader('Upload a document for additional context', type=['txt'], accept_multiple_files=True)
         submitted = st.button('Save to Astra DB')
         if submitted:
             vectorize_text(uploaded_file, vector_store)
