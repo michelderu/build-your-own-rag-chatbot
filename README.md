@@ -47,7 +47,7 @@ Follow the steps outlined [here](https://docs.streamlit.io/streamlit-community-c
 ![codespace](./assets/streamlit.png)
 
 ## 2️⃣ First try the concepts in a Colab Notebook
-To kick this workshop off, we'll first try the concepts in a [Colab Notebook](https://colab.research.google.com/drive/1paBN91kHN20la9s21oLfDOsOwWZn4dlW?authuser=1#scrollTo=S_h_Ah_Bb_Qo).
+To kick this workshop off, we'll first try the concepts in a [Colab Notebook](https://colab.research.google.com/drive/1_n-QZyuP898JNaX7RDnCmw9lkibgEuP).
 
 This notebook shows the steps to take to use the Astra DB Vector Store as a means to make LLM interactions meaningfull and without hallucinations. The approach taken here is Retrieval Augmented Generation.
 
